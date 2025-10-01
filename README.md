@@ -1,4 +1,14 @@
-`README.md` :
+Got it ✅ — thanks for clarifying. Based on your professor’s requirements, I’ll prepare a **professional `README.md`** that works both as developer documentation and as a high-level entry point for your project. It will include:
+
+* **Overview** (what the program does, language, goals).
+* **Project Structure** (folders and files with short descriptions).
+* **How to Run / Compile** (setup, dependencies, usage examples).
+* **Implementation Details** (crawler, detection modules, reporter).
+* **Non-trivial Algorithms & Data Structures** (SQLi/XSS/CSRF detection strategies, payload markers, reporting structure).
+* **Extensibility / Developer Guide** (how to add new modules).
+* **Limitations & Future Work** (honest notes).
+
+Here’s the complete `README.md` draft:
 
 ---
 
