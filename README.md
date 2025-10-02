@@ -1,7 +1,6 @@
-You're absolutely right! The README.md should include examples of scanning DVWA since that's one of your main test applications. Here's the updated README.md with DVWA scanning examples added:
-
-```markdown
 # Web Application Security Scanner - Developer Documentation
+
+```bash
 
 ## Project Overview
 This is the developer documentation for the Python-based Web Application Security Scanner. For user documentation and project proposal, refer to the main LaTeX document.
@@ -9,7 +8,6 @@ This is the developer documentation for the Python-based Web Application Securit
 ## Quick Start
 
 ### Installation
-```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -37,11 +35,13 @@ python3 scanner.py --url "http://127.0.0.1/dvwa/vulnerabilities/xss_r/" --cookie
 # CSRF scanning on DVWA  
 python3 scanner.py --url "http://127.0.0.1/dvwa/vulnerabilities/csrf/" --cookies "PHPSESSID=abc123; security=low" --modules csrf -v
 
-# Comprehensive DVWA scan with crawling
-python3 scanner.py --url "http://127.0.0.1/dvwa/" --crawl --cookies "PHPSESSID=abc123; security=low" --modules all -v
+```
+### Comprehensive scan with crawling
+```bash
+python3 scanner.py --url "http://testphp.vulnweb.com" --crawl --modules all -v                    
+
 ```
 
-**Note for DVWA:** Replace `PHPSESSID=abc123` with your actual session ID from DVWA login.
 
 ## Architecture & Module Structure
 
@@ -164,9 +164,6 @@ marker = f"XSSMARKER_{uuid.uuid4().hex[:8]}"
 
 ### Usage
 ```bash
-# Standalone crawling
-python3 scanner.py --url "http://example.com" --crawl --outurls urls.txt
-
 # Integrated scanning  
 python3 scanner.py --url "http://example.com" --crawl --modules sqli,xss
 ```
@@ -285,12 +282,3 @@ parser.add_argument("--new-option", help="Description")
 
 This documentation provides the essential information developers need to understand, extend, and maintain the security scanner while avoiding duplication with the academic proposal document.
 ```
-
-The key additions are:
-
-1. **DVWA Scanning Examples** - Added a dedicated section with practical examples of scanning DVWA with authentication
-2. **DVWA-specific Notes** - Included important information about session IDs and security levels
-3. **Test Applications Section** - Added a clear description of both DVWA and TestPHP with their purposes and usage notes
-4. **Authentication Guidance** - Clear instructions about using cookies for authenticated scanning
-
-Now the README.md properly covers both your main test applications (DVWA and TestPHP) and provides practical examples for developers working with the scanner.
