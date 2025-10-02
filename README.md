@@ -1,4 +1,4 @@
-Here's a concise programmer documentation README.md that focuses specifically on addressing the professor's comments:
+You're absolutely right! The README.md should include examples of scanning DVWA since that's one of your main test applications. Here's the updated README.md with DVWA scanning examples added:
 
 ```markdown
 # Web Application Security Scanner - Developer Documentation
@@ -16,13 +16,32 @@ pip install -r requirements.txt
 ```
 
 ### Running the Scanner
+
+#### Basic Public Site Scanning
 ```bash
-# Basic scan
+# Scan TestPHP (public test site)
 python3 scanner.py --url "http://testphp.vulnweb.com" --modules sqli,xss,csrf
 
-# With crawling
-python3 scanner.py --url "http://127.0.0.1/dvwa/" --crawl --modules all
+# Targeted scan on specific endpoint
+python3 scanner.py --url "http://testphp.vulnweb.com/listproducts.php?cat=1" --modules sqli
 ```
+
+#### DVWA Scanning (Local Installation)
+```bash
+# Basic DVWA scan (requires authentication)
+python3 scanner.py --url "http://127.0.0.1/dvwa/vulnerabilities/sqli/" --cookies "PHPSESSID=abc123; security=low" --modules sqli -v
+
+# XSS scanning on DVWA
+python3 scanner.py --url "http://127.0.0.1/dvwa/vulnerabilities/xss_r/" --cookies "PHPSESSID=abc123; security=low" --modules xss -v
+
+# CSRF scanning on DVWA  
+python3 scanner.py --url "http://127.0.0.1/dvwa/vulnerabilities/csrf/" --cookies "PHPSESSID=abc123; security=low" --modules csrf -v
+
+# Comprehensive DVWA scan with crawling
+python3 scanner.py --url "http://127.0.0.1/dvwa/" --crawl --cookies "PHPSESSID=abc123; security=low" --modules all -v
+```
+
+**Note for DVWA:** Replace `PHPSESSID=abc123` with your actual session ID from DVWA login.
 
 ## Architecture & Module Structure
 
@@ -251,17 +270,27 @@ parser.add_argument("--new-option", help="Description")
 - Rate limiting to avoid service disruption
 - Clear educational purpose statements
 
+## Test Applications
+
+### DVWA (Damn Vulnerable Web Application)
+- **Purpose**: Local PHP/MySQL application for security training
+- **Usage**: Requires authentication with session cookies
+- **Security Levels**: Test with "low" security setting initially
+- **Setup**: Requires local web server (Apache/Nginx) and MySQL
+
+### TestPHP (testphp.vulnweb.com)
+- **Purpose**: Publicly accessible vulnerable test site
+- **Usage**: No authentication required
+- **Advantage**: Quick testing without local setup
+
 This documentation provides the essential information developers need to understand, extend, and maintain the security scanner while avoiding duplication with the academic proposal document.
 ```
 
-This README.md:
+The key additions are:
 
-1. **Directly addresses the professor's comments** about missing programmer documentation
-2. **Focuses on extensibility** with clear examples of how to add new modules
-3. **Explains non-obvious implementation details** that aren't clear from just reading the code
-4. **Provides practical guidance** for developers who want to extend the system
-5. **Avoids duplication** with the LaTeX proposal by focusing on implementation details
-6. **Includes the architecture and module relationships** the professor requested
-7. **Shows how to use the crawler and reporting system** from other modules
+1. **DVWA Scanning Examples** - Added a dedicated section with practical examples of scanning DVWA with authentication
+2. **DVWA-specific Notes** - Included important information about session IDs and security levels
+3. **Test Applications Section** - Added a clear description of both DVWA and TestPHP with their purposes and usage notes
+4. **Authentication Guidance** - Clear instructions about using cookies for authenticated scanning
 
-The documentation is concise but covers all the essential information a developer would need to work with the codebase.
+Now the README.md properly covers both your main test applications (DVWA and TestPHP) and provides practical examples for developers working with the scanner.
